@@ -1,0 +1,62 @@
+package com.dogrestapi.dogwebservices.doglist;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DogResource {
+    private DogService dogService;
+
+    public DogResource(DogService dogService) {
+        this.dogService = dogService;
+    }
+
+    @GetMapping("/users/{username}/dogs")
+    public List<Dog> retrieveDogs(@PathVariable String username) {
+        return dogService.findByUsername(username);
+    }
+
+    @GetMapping("/users/{username}/dogs/{id}")
+    public Dog retrieveDog(@PathVariable String username,
+            @PathVariable int id) {
+        return dogService.findById(id);
+    }
+
+    @GetMapping("/users/{username}/dogs/{breed}")
+    public List<Dog> retrieveBreed(@PathVariable String username,
+            @PathVariable String breed) {
+        return dogService.findByBreed(breed);
+    }
+
+    @DeleteMapping("/users/{username}/dogs/{id}")
+    public ResponseEntity<Void> deleteDog(@PathVariable String username,
+            @PathVariable int id) {
+        dogService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/users/{username}/dogs/{id}")
+    public Dog updateDog(@PathVariable String username,
+            @PathVariable int id, @RequestBody Dog dog) {
+        dogService.updateDog(dog);
+        return dog;
+    }
+
+    @PostMapping("/users/{username}/dogs")
+    public Dog createDog(@PathVariable String username,
+            @RequestBody Dog dog) {
+        Dog createdDog = dogService.addDog(dog.getName(),
+                dog.getAge(), dog.getColor(), dog.getBreed());
+
+        return createdDog;
+    }
+
+}
