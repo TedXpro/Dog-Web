@@ -1,4 +1,4 @@
-package com.dogrestapi.dogwebservices.doglist;
+package com.dogrestapi.dogwebservices.dogList;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class DogResource {
         return dogService.findById(id);
     }
 
-    @GetMapping("/users/{username}/dogs/{breed}")
+    @GetMapping("/users/{username}/dogs/breeds/{breed}")
     public List<Dog> retrieveBreed(@PathVariable String username,
             @PathVariable String breed) {
         return dogService.findByBreed(breed);
@@ -45,13 +45,13 @@ public class DogResource {
 
     @PutMapping("/users/{username}/dogs/{id}")
     public Dog updateDog(@PathVariable String username,
-            @PathVariable int id, @RequestBody Dog dog) {
+            @PathVariable int id, @RequestBody Dog dog) { // RequestBody is what is the json i want to update
         dogService.updateDog(dog);
         return dog;
     }
 
-    @PostMapping("/users/{username}/dogs")
-    public Dog createDog(@PathVariable String username,
+    @PostMapping("/users/{username}/dog")
+    public Dog createDog(
             @RequestBody Dog dog) {
         Dog createdDog = dogService.addDog(dog.getName(),
                 dog.getAge(), dog.getColor(), dog.getBreed());

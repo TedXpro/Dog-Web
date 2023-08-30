@@ -1,4 +1,4 @@
-package com.dogrestapi.dogwebservices.doglist;
+package com.dogrestapi.dogwebservices.dogList;
 
 public class Dog {
     private String username;
@@ -11,9 +11,10 @@ public class Dog {
     public Dog() {
     }
 
-    public Dog(int id, String username, String name, int age, String color, String breed) {
-        this.username = username;
+    public Dog(int id, String username,
+            String name, int age, String color, String breed) {
         this.id = id;
+        this.username = username;
         this.name = name;
         this.age = age;
         this.color = color;

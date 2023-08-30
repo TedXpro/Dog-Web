@@ -1,4 +1,4 @@
-package com.dogrestapi.dogwebservices.doglist;
+package com.dogrestapi.dogwebservices.dogList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ public class DogService {
 
     static {
         dogs.add(new Dog(++dogCount, "Yohannes", "Sassy", 10, "Brown", "Chiwawa"));
-        dogs.add(new Dog(++dogCount, "Yohannes", "Bobby", 8, "White", "Regular"));
-        dogs.add(new Dog(++dogCount, "Yohannes", "Terfie", 11, "White and Brown", "Regular"));
+        dogs.add(new Dog(++dogCount, "Yohannes", "Bobby", 8, "White", "Normal"));
+        dogs.add(new Dog(++dogCount, "Yohannes", "Terfie", 11, "White and Brown", "Normal"));
         dogs.add(new Dog(++dogCount, "Yohannes", "Blue", 5, "Black and White", "Husky"));
     }
 
